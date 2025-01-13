@@ -22,12 +22,12 @@ class FIFOCache(BaseCaching):
         """adds an item to cache system"""
         if key is None or item is None:
             return
+        self.cache_data[key] = item
         # limit check
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             first_key = next(iter(self.cache_data.keys()))
             self.cache_data.pop(first_key)
             print("DISCARD: {}".format(first_key))
-        self.cache_data[key] = item
 
     def get(self, key):
         """ Extracts items by key"""
